@@ -62,16 +62,16 @@ public class ArticleDataArrayListAdapter extends BaseAdapter {
 
 
         if(mCompanyName!=null){
-            holder.companyTextView.setText("会社名  " + mCompanyName);
+            holder.companyTextView.setText(mCompanyName);
         }
         if(mBlackName!=null){
-            holder.blackNameTextView.setText("社長名　" + mBlackName);
+            holder.blackNameTextView.setText(mBlackName);
         }
         if(mCase!=null){
-            holder.caseTextView.setText("ケース　" + mCase);
+            holder.caseTextView.setText(mCase);
         }
         if(mDate!=null){
-            holder.dateTextView.setText("発生年　"+ mDate);
+            holder.dateTextView.setText(mDate);
         }
 
 
