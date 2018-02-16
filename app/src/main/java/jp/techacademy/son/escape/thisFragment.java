@@ -6,6 +6,7 @@ package jp.techacademy.son.escape;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextPaint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,14 +66,14 @@ public class thisFragment extends Fragment {
         key = bundle.getString("key");
 
 
-        companyTextView.setText("会社名\n" + companyName);
-        blackNameTextView.setText("社長名\n" + blackName);
+
+
+        companyTextView.setText("会社名" + companyName);
+        blackNameTextView.setText("社長名" + blackName);
         caseTextView.setText("事例\n" + cases);
-        dateTextView.setText("発生年\n" + date);
+        dateTextView.setText("発生年 " + date);
         refTextView.setText("参照元\n" + ref);
         contentTextView.setText("事案概要\n" + content);
-
-
 
 
         backButton.setOnClickListener(new View.OnClickListener(){
