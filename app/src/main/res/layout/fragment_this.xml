@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="#ffffff">
+    android:background="#ffffff"
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="戻る"
-        android:id="@+id/backButton"/>
+    android:divider="@layout/divider"
+    android:dividerPadding="0dp"
+    android:showDividers="middle">
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,6 +35,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/refTextView"/>
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="リストへ戻る"
+        android:id="@+id/backText"
+        android:textColor="#0000ff"
+        android:onClick="testToast"
+        android:paddingTop="10dp"
+        android:paddingLeft="25dp"
+        android:clickable="true"/>
 
 </LinearLayout>

@@ -24,7 +24,7 @@ public class thisFragment extends Fragment {
     TextView dateTextView;
     TextView refTextView;
     TextView contentTextView;
-    Button backButton;
+    TextView backText;
     String mUid;
     String date;
     String companyName;
@@ -39,7 +39,7 @@ public class thisFragment extends Fragment {
         super.onCreateView(inflater,container,savedInstanceState);
         View v = inflater.inflate(R.layout.fragment_this,container,false);
 
-        backButton = (Button)v.findViewById(R.id.backButton);
+        backText = (TextView)v.findViewById(R.id.backText);
         companyTextView = (TextView)v.findViewById(R.id.companyNameTextView);
         blackNameTextView = (TextView)v.findViewById(R.id.blackNameTextView);
         caseTextView = (TextView)v.findViewById(R.id.caseTextView);
@@ -59,13 +59,11 @@ public class thisFragment extends Fragment {
         mUid = bundle.getString("mUid");
         date = bundle.getString("date");
         companyName = bundle.getString("companyName");
-        blackName= bundle.getString("blackName");
+        blackName = bundle.getString("blackName");
         content = bundle.getString("content");
         cases = bundle.getString("cases");
         ref = bundle.getString("ref");
         key = bundle.getString("key");
-
-
 
 
         companyTextView.setText("会社名" + companyName);
@@ -76,24 +74,17 @@ public class thisFragment extends Fragment {
         contentTextView.setText("事案概要\n" + content);
 
 
-        backButton.setOnClickListener(new View.OnClickListener(){
+        backText.setClickable(true);
+        backText.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                back();
+            public void onClick(View view) {
+                watchFragment fragmentWatch = new watchFragment();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.container, fragmentWatch, watchFragment.TAG)
+                        .commit();
             }
         });
 
 
-
-
-
-
     }
-
-    public void back(){
-        getFragmentManager().beginTransaction().remove(this).commit();
-    }
-
-
-
 }
