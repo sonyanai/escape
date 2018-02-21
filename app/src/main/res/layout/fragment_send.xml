@@ -21,7 +21,6 @@ android:layout_height="match_parent">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLength="30"
         android:id="@+id/companyNameEditText"
         android:hint="会社名を入力"/>
     <TextView
@@ -31,7 +30,6 @@ android:layout_height="match_parent">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLength="30"
         android:id="@+id/blackNameEditText"
         android:hint="社長名を入力"/>
     <TextView
@@ -54,7 +52,6 @@ android:layout_height="match_parent">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLength="100"
         android:id="@+id/caseEditText"
         android:hint="事例を入力"/>
     <TextView
@@ -64,7 +61,6 @@ android:layout_height="match_parent">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLength="200"
         android:id="@+id/contentEditText"
         android:hint="事案概要"/>
     <TextView
@@ -75,7 +71,6 @@ android:layout_height="match_parent">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLength="100"
         android:id="@+id/refEditText"
         android:hint="参照元を入力"/>
     <TextView
