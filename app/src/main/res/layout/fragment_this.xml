@@ -4,8 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="#ffffff"
-
     android:divider="@layout/divider"
     android:dividerPadding="0dp"
     android:showDividers="middle">

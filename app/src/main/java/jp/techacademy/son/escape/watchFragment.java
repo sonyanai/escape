@@ -34,7 +34,6 @@ public class watchFragment extends Fragment {
 
     public static final String TAG = "watchFragment";
 
-    private AdView sAdView;
 
 
     private Button searchButton;
@@ -51,6 +50,7 @@ public class watchFragment extends Fragment {
     DatabaseReference contentsPathRef;
     //検索ワード
     String cord;
+    private AdView sAdView;
 
 
 
@@ -99,12 +99,6 @@ public class watchFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_watch,container,false);
 
-        MobileAds.initialize(this.getActivity(), "ca-app-pub-3940256099942544~6300978111");
-
-        sAdView = (AdView) v.findViewById(R.id.adsView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        sAdView.loadAd(adRequest);
-
 
         searchButton = (Button)v.findViewById(R.id.searchButton);
         searchEditText = (EditText)v.findViewById(R.id.searchEditText);
@@ -117,6 +111,7 @@ public class watchFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance().getReference();
         user = FirebaseAuth.getInstance().getCurrentUser();
         contentsPathRef = databaseReference.child(Const.ContentsPATH);
+
 
         return v;
     }
@@ -197,5 +192,9 @@ public class watchFragment extends Fragment {
 
 
     }
+
+
+
+
 
 }
