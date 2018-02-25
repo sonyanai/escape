@@ -65,31 +65,35 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onRewardedVideoAdLoaded() {
             }
-
-            @Override
-            public void onRewardedVideoAdOpened() {
-            }
-
             @Override
             public void onRewardedVideoStarted() {
+                //動画開始
             }
-
+            @Override
+            public void onRewardedVideoAdOpened() {
+                //動画開始する
+            }
             @Override
             public void onRewardedVideoAdClosed() {
-            }
-
-            @Override
-            public void onRewarded(RewardItem reward) {
+                //動画を閉じたとき
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
-
+            @Override
+            public void onRewarded(RewardItem reward) {
+                //動画を見終わったとき
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
             @Override
             public void onRewardedVideoAdLeftApplication() {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
-
             @Override
             public void onRewardedVideoAdFailedToLoad(int i) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -137,8 +141,6 @@ public class LoginActivity extends AppCompatActivity {
                     // プログレスダイアログを非表示にする
                     //mProgress.setVisibility(ProgressBar.GONE);
 
-                    // Activityを閉じる
-                    finish();
 
                 } else {
                     // 失敗した場合
