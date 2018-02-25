@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -30,6 +33,9 @@ import java.util.HashMap;
 public class watchFragment extends Fragment {
 
     public static final String TAG = "watchFragment";
+
+    private AdView sAdView;
+
 
     private Button searchButton;
     private EditText searchEditText;
@@ -92,6 +98,13 @@ public class watchFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         View v = inflater.inflate(R.layout.fragment_watch,container,false);
+
+        MobileAds.initialize(this.getActivity(), "ca-app-pub-3940256099942544~6300978111");
+
+        sAdView = (AdView) v.findViewById(R.id.adsView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        sAdView.loadAd(adRequest);
+
 
         searchButton = (Button)v.findViewById(R.id.searchButton);
         searchEditText = (EditText)v.findViewById(R.id.searchEditText);
