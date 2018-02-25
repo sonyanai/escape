@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+        MobileAds.initialize(this, "ca-app-pub-7661426638199440/7496406716");
         mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
 
 
