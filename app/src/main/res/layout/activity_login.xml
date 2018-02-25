@@ -37,4 +37,6 @@ tools:context="jp.techacademy.son.escape.LoginActivity">
     android:text="アカウント作成"
     android:id="@+id/createButton" />
 
+
+
 </LinearLayout>
