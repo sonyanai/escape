@@ -5,7 +5,6 @@ package jp.techacademy.son.escape;
  */
 
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +15,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -30,9 +35,11 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private RewardedVideoAd mRewardedVideoAd;
+
     EditText mEmailEditText;
     EditText mPasswordEditText;
-    ProgressBar mProgress;
+    //ProgressBar mProgress;
 
     FirebaseAuth mAuth;
     OnCompleteListener<AuthResult> mCreateAccountListener;
@@ -46,6 +53,48 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
+
+
+
+
+        mRewardedVideoAd.setRewardedVideoAdListener(new RewardedVideoAdListener() {
+            @Override
+            public void onRewardedVideoAdLoaded() {
+            }
+
+            @Override
+            public void onRewardedVideoAdOpened() {
+            }
+
+            @Override
+            public void onRewardedVideoStarted() {
+            }
+
+            @Override
+            public void onRewardedVideoAdClosed() {
+            }
+
+            @Override
+            public void onRewarded(RewardItem reward) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onRewardedVideoAdLeftApplication() {
+            }
+
+            @Override
+            public void onRewardedVideoAdFailedToLoad(int i) {
+            }
+        });
+
+        loadRewardedVideoAd();
+
 
         mDataBaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -70,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
                     Snackbar.make(view, "アカウント作成に失敗しました", Snackbar.LENGTH_LONG).show();
 
                     // プログレスダイアログを非表示にする
-                    mProgress.setVisibility(ProgressBar.GONE);
+                    //mProgress.setVisibility(ProgressBar.GONE);
                 }
             }
         };
@@ -86,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                     DatabaseReference userRef = mDataBaseReference.child(Const.UsersPATH).child(user.getUid());
 
                     // プログレスダイアログを非表示にする
-                    mProgress.setVisibility(ProgressBar.GONE);
+                    //mProgress.setVisibility(ProgressBar.GONE);
 
                     // Activityを閉じる
                     finish();
@@ -98,7 +147,7 @@ public class LoginActivity extends AppCompatActivity {
                     Snackbar.make(view, "ログインに失敗しました", Snackbar.LENGTH_LONG).show();
 
                     // プログレスダイアログを非表示にする
-                    mProgress.setVisibility(ProgressBar.GONE);
+                    //mProgress.setVisibility(ProgressBar.GONE);
                 }
             }
         };
@@ -158,27 +207,55 @@ public class LoginActivity extends AppCompatActivity {
 
     private void createAccount(String email, String password) {
         // プログレスダイアログを表示する
-        mProgress.setVisibility(ProgressBar.VISIBLE);
+        //mProgress.setVisibility(ProgressBar.VISIBLE);
+        //mProgress.setVisibility(View.VISIBLE);
 
         // アカウントを作成する
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(mCreateAccountListener);
 
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
+        //動画開始？
+        if (mRewardedVideoAd.isLoaded()) {
+            mRewardedVideoAd.show();
+        }
 
 
     }
 
     private void login(String email, String password) {
         // プログレスダイアログを表示する
-        mProgress.setVisibility(ProgressBar.VISIBLE);
+        //mProgress.setVisibility(View.VISIBLE);
 
         // ログインする
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(mLoginListener);
 
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
+        //動画開始？
+        if (mRewardedVideoAd.isLoaded()) {
+            mRewardedVideoAd.show();
+        }
 
+    }
+
+    private void loadRewardedVideoAd() {
+        mRewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917",
+                new AdRequest.Builder().build());
+    }
+
+    @Override
+    public void onResume() {
+        mRewardedVideoAd.resume(this);
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        mRewardedVideoAd.pause(this);
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        mRewardedVideoAd.destroy(this);
+        super.onDestroy();
     }
 
 }
