@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="jp.techacademy.refuse.black.reject.MainActivity">
+
+    <item
+        android:id="@+id/logoutFragmentButton"
+        android:icon="@drawable/ic_remove_white_24dp"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom"
+        android:title="action_add"/>
     <item
         android:id="@+id/addButton"
         android:icon="@drawable/plus"

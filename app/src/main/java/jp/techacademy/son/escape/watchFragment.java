@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
-import com.google.android.gms.ads.AdView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -48,7 +47,6 @@ public class watchFragment extends Fragment {
     DatabaseReference contentsPathRef;
     //検索ワード
     String cord;
-    private AdView sAdView;
 
 
 
@@ -117,12 +115,8 @@ public class watchFragment extends Fragment {
     public void onViewCreated(View view,Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         mArticleDataArrayList.clear();
         contentsPathRef.addChildEventListener(mEventListener);
-
-
-
 
         searchButton.setOnClickListener(new View.OnClickListener(){
             @Override

@@ -14,8 +14,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
@@ -115,6 +113,10 @@ public class LoginActivity extends AppCompatActivity {
                     String email = mEmailEditText.getText().toString();
                     String password = mPasswordEditText.getText().toString();
                     login(email, password);
+
+                    View view = findViewById(android.R.id.content);
+                    Snackbar.make(view, "アカウント作成に成功しました", Snackbar.LENGTH_LONG).show();
+
                 } else {
 
                     // 失敗した場合
@@ -122,8 +124,6 @@ public class LoginActivity extends AppCompatActivity {
                     View view = findViewById(android.R.id.content);
                     Snackbar.make(view, "アカウント作成に失敗しました", Snackbar.LENGTH_LONG).show();
 
-                    // プログレスダイアログを非表示にする
-                    //mProgress.setVisibility(ProgressBar.GONE);
                 }
             }
         };
@@ -134,13 +134,13 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(Task<AuthResult> task) {
 
                 if (task.isSuccessful()) {
+
+                    View view = findViewById(android.R.id.content);
+                    Snackbar.make(view, "ログインに成功しました", Snackbar.LENGTH_LONG).show();
+
                     // 成功した場合
                     FirebaseUser user = mAuth.getCurrentUser();
                     DatabaseReference userRef = mDataBaseReference.child(Const.UsersPATH).child(user.getUid());
-
-                    // プログレスダイアログを非表示にする
-                    //mProgress.setVisibility(ProgressBar.GONE);
-
 
                 } else {
                     // 失敗した場合

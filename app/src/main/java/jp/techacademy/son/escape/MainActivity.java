@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     public sendFragment fragmentSend;
     public watchFragment fragmentWatch;
+    public logoutFragment fragmentLogout;
     private FirebaseUser user;
     private AdView mAdView;
 
@@ -57,19 +58,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+            case R.id.logoutFragmentButton:
+                logoutFragment fragmentLogout = new logoutFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                // 他にも、メソッドにはreplace removeがあります
+                // メソッドの1つ目の引数は対象のViewGroupのID、2つ目の引数は追加するfragment
+                transaction.replace(R.id.container, fragmentLogout);
+                // 最後にcommitを使用することで変更を反映します
+                transaction.commit();
+                break;
             case R.id.addButton:
                 user = FirebaseAuth.getInstance().getCurrentUser();
                 if(user==null) {
                     intentLogin();
                 }else{
                     sendFragment fragmentSend = new sendFragment();
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    // 他にも、メソッドにはreplace removeがあります
-                    // メソッドの1つ目の引数は対象のViewGroupのID、2つ目の引数は追加するfragment
-                    transaction.replace(R.id.container, fragmentSend);
-                    // 最後にcommitを使用することで変更を反映します
-                    transaction.commit();
+                    FragmentTransaction transactions = getSupportFragmentManager().beginTransaction();
+                    transactions.replace(R.id.container, fragmentSend);
+                    transactions.commit();
                 }
+                break;
         }
         return false;
     }
