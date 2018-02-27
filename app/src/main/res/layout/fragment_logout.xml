@@ -17,8 +17,6 @@
         android:id="@+id/listText"
         android:textColor="#0000ff"
         android:onClick="testToast"
-        android:paddingTop="10dp"
-        android:paddingLeft="25dp"
         android:clickable="true"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/logoutButton"
