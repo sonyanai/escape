@@ -147,8 +147,6 @@ public class LoginActivity extends AppCompatActivity {
                     // エラーを表示する
                     View view = findViewById(android.R.id.content);
                     Snackbar.make(view, "ログインに失敗しました", Snackbar.LENGTH_LONG).show();
-
-
                 }
             }
         };

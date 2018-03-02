@@ -39,6 +39,7 @@ public class watchFragment extends Fragment {
     //内容とか入っているリスト
     public ArrayList<articleData> mArticleDataArrayList;
     public ArrayList<articleData> bArticleDataArrayList;
+    public ArrayList<articleData> cArticleDataArrayList;
     private ArticleDataArrayListAdapter mAdapter;
     private ListView mListView;
     thisFragment fragmentThis;
@@ -70,6 +71,9 @@ public class watchFragment extends Fragment {
             mAdapter.setArticleDataArrayList(mArticleDataArrayList);
             mListView.setAdapter(mAdapter);
             mAdapter.notifyDataSetChanged();
+
+            cArticleDataArrayList = mArticleDataArrayList;
+
         }
 
         @Override
@@ -121,19 +125,26 @@ public class watchFragment extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                ArrayList<articleData> bArticleDataArrayList = new ArrayList<articleData>();
                 //検索ワードの取得
+                mArticleDataArrayList = cArticleDataArrayList;
                 cord=searchEditText.getText().toString();
                 if (cord.length() > 0) {
-                    bArticleDataArrayList.clear();
                     for (articleData aaa : mArticleDataArrayList){
-                        if (aaa.getCompanyName().equals(cord)){
+                        if (aaa.getCompanyName().indexOf(cord) != -1){
                             bArticleDataArrayList.add(aaa);
-                            mAdapter.setArticleDataArrayList(bArticleDataArrayList);
-                            mListView.setAdapter(mAdapter);
-                            mAdapter.notifyDataSetChanged();
+                        }
+                        if(aaa.getCase().indexOf(cord) != -1){
+                            bArticleDataArrayList.add(aaa);
                         }
                     }
+                    if (bArticleDataArrayList.size()>0){
+                        mAdapter.setArticleDataArrayList(bArticleDataArrayList);
+                        mListView.setAdapter(mAdapter);
+                        mAdapter.notifyDataSetChanged();
+                    }
                 }
+                mArticleDataArrayList.clear();
                 mArticleDataArrayList = bArticleDataArrayList;
             }
         });
@@ -142,6 +153,7 @@ public class watchFragment extends Fragment {
             @Override
             public void onClick(View view){
                 mArticleDataArrayList.clear();
+                bArticleDataArrayList.clear();
                 searchEditText.getText().clear();
                 contentsPathRef.addChildEventListener(mEventListener);
             }
