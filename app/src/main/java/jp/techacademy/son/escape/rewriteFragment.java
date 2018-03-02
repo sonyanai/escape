@@ -174,16 +174,12 @@ public class rewriteFragment extends Fragment {
 
                                 Snackbar.make(view, "変更完了しました", Snackbar.LENGTH_LONG).show();
 
-
-
                                 thisFragment fragmentThis = new thisFragment();
                                 fragmentThis.setArguments(bundle);
 
                                 getFragmentManager().beginTransaction()
                                         .replace(R.id.container,fragmentThis,thisFragment.TAG)
                                         .commit();
-
-                                //データの再登録，完了時にスナップバーなどで通知する
 
                             }
                         }

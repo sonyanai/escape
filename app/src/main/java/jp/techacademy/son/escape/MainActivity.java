@@ -26,27 +26,34 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/*
-        MobileAds.initialize(this, "ca-app-pub-7661426638199440~2205563348");
+
+        MobileAds.initialize(this,
+                "ca-app-pub-7661426638199440/6614693590");
 
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-        */
 
 
-        watchFragment fragmentWatch = new watchFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        // 他にも、メソッドにはreplace removeがあります
-        // メソッドの1つ目の引数は対象のViewGroupのID、2つ目の引数は追加するfragment
-        transaction.add(R.id.container, fragmentWatch);
-        // 最後にcommitを使用することで変更を反映します
-        transaction.commit();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user == null) {
+            intentLogin();
+        }else {
+            watchFragment fragmentWatch = new watchFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            // 他にも、メソッドにはreplace removeがあります
+            // メソッドの1つ目の引数は対象のViewGroupのID、2つ目の引数は追加するfragment
+            transaction.add(R.id.container, fragmentWatch);
+            // 最後にcommitを使用することで変更を反映します
+            transaction.commit();
+        }
+
+
+
 
 
     }

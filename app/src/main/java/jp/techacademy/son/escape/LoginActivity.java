@@ -37,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText mEmailEditText;
     EditText mPasswordEditText;
-    //ProgressBar mProgress;
 
     FirebaseAuth mAuth;
     OnCompleteListener<AuthResult> mCreateAccountListener;
@@ -54,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         MobileAds.initialize(this, "ca-app-pub-7661426638199440/7496406716");
+
         mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
 
 
@@ -205,42 +205,30 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void createAccount(String email, String password) {
-        // プログレスダイアログを表示する
-        //mProgress.setVisibility(ProgressBar.VISIBLE);
-        //mProgress.setVisibility(View.VISIBLE);
 
         // アカウントを作成する
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(mCreateAccountListener);
-        //あとで削除
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
-/*
+
         //動画開始？
         if (mRewardedVideoAd.isLoaded()) {
             mRewardedVideoAd.show();
         }
-*/
-
     }
 
     private void login(String email, String password) {
-        // プログレスダイアログを表示する
-        //mProgress.setVisibility(View.VISIBLE);
 
         // ログインする
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(mLoginListener);
-/*
+
         //動画開始？
         if (mRewardedVideoAd.isLoaded()) {
             mRewardedVideoAd.show();
         }
-*/      //あとで削除
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
+
     }
 
     private void loadRewardedVideoAd() {
-        mRewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917",
+        mRewardedVideoAd.loadAd("ca-app-pub-7661426638199440/7496406716",
                 new AdRequest.Builder().build());
     }
 
