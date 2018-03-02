@@ -76,8 +76,8 @@ public class thisFragment extends Fragment {
         key = bundle.getString("key");
 
 
-        companyTextView.setText("会社名" + companyName);
-        blackNameTextView.setText("社長名" + blackName);
+        companyTextView.setText("会社名 " + companyName);
+        blackNameTextView.setText("社長名 " + blackName);
         caseTextView.setText("事例\n" + cases);
         dateTextView.setText("発生年 " + date);
         refTextView.setText("参照元\n" + ref);

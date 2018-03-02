@@ -134,6 +134,7 @@ public class watchFragment extends Fragment {
                         }
                     }
                 }
+                mArticleDataArrayList = bArticleDataArrayList;
             }
         });
 
@@ -169,24 +170,9 @@ public class watchFragment extends Fragment {
 
             }
         });
-/*
-        // ListViewを長押ししたときの処理
-        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-                // お気に入りに追加
-
-                return true;
-            }
-        });
-*/
 
 
     }
-
-
-
 
 
 }
