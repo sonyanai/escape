@@ -13,6 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 
 public class thisFragment extends Fragment {
 
@@ -25,6 +28,7 @@ public class thisFragment extends Fragment {
     TextView refTextView;
     TextView contentTextView;
     TextView backText;
+    TextView rewriteTextView;
     String mUid;
     String date;
     String companyName;
@@ -33,6 +37,8 @@ public class thisFragment extends Fragment {
     String cases;
     String ref;
     String key;
+    String thisUid;
+    private FirebaseUser user;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -40,6 +46,7 @@ public class thisFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_this,container,false);
 
         backText = (TextView)v.findViewById(R.id.backText);
+        rewriteTextView = (TextView)v.findViewById(R.id.rewriteTextView);
         companyTextView = (TextView)v.findViewById(R.id.companyNameTextView);
         blackNameTextView = (TextView)v.findViewById(R.id.blackNameTextView);
         caseTextView = (TextView)v.findViewById(R.id.caseTextView);
@@ -54,6 +61,9 @@ public class thisFragment extends Fragment {
 
     public void onViewCreated(View view,Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        thisUid = user.getUid();
 
         Bundle bundle = getArguments();
         mUid = bundle.getString("mUid");
@@ -82,6 +92,38 @@ public class thisFragment extends Fragment {
                 getFragmentManager().beginTransaction()
                         .replace(R.id.container, fragmentWatch, watchFragment.TAG)
                         .commit();
+            }
+        });
+
+
+        if (!(thisUid.equals(mUid))){
+            rewriteTextView.setVisibility(View.INVISIBLE);
+        }
+
+        rewriteTextView.setClickable(true);
+        rewriteTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                //rewriteFragmentにデータを飛ばす
+                Bundle bundle = new Bundle();
+                bundle.putString("mUid", mUid);
+                bundle.putString("date", date);
+                bundle.putString("companyName", companyName);
+                bundle.putString("blackName", blackName);
+                bundle.putString("content", content);
+                bundle.putString("cases", cases);
+                bundle.putString("ref", ref);
+                bundle.putString("key", key);
+                rewriteFragment fragmentRewrite = new rewriteFragment();
+                fragmentRewrite.setArguments(bundle);
+
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.container,fragmentRewrite,rewriteFragment.TAG)
+                        .commit();
+
+
             }
         });
 

@@ -148,8 +148,7 @@ public class LoginActivity extends AppCompatActivity {
                     View view = findViewById(android.R.id.content);
                     Snackbar.make(view, "ログインに失敗しました", Snackbar.LENGTH_LONG).show();
 
-                    // プログレスダイアログを非表示にする
-                    //mProgress.setVisibility(ProgressBar.GONE);
+
                 }
             }
         };
@@ -214,12 +213,15 @@ public class LoginActivity extends AppCompatActivity {
 
         // アカウントを作成する
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(mCreateAccountListener);
-
+        //あとで削除
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+/*
         //動画開始？
         if (mRewardedVideoAd.isLoaded()) {
             mRewardedVideoAd.show();
         }
-
+*/
 
     }
 
@@ -229,12 +231,14 @@ public class LoginActivity extends AppCompatActivity {
 
         // ログインする
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(mLoginListener);
-
+/*
         //動画開始？
         if (mRewardedVideoAd.isLoaded()) {
             mRewardedVideoAd.show();
         }
-
+*/      //あとで削除
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
     }
 
     private void loadRewardedVideoAd() {

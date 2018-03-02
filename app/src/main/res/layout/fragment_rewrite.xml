@@ -8,36 +8,39 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:divider="@layout/divider"
-        android:dividerPadding="0dp"
-        android:showDividers="middle">
+        android:padding="16dp">
 
 
-        <TextView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/dateTextView"/>
-        <TextView
+            android:hint="発生年を入力"
+            android:id="@+id/dateEditText"/>
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/companyNameTextView"/>
-        <TextView
+            android:id="@+id/companyNameEditText"
+            android:hint="会社名を入力"/>
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/blackNameTextView"/>
-        <TextView
+            android:id="@+id/blackNameEditText"
+            android:hint="社長名を入力"/>
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/caseTextView"/>
-        <TextView
+            android:id="@+id/caseEditText"
+            android:hint="事例を入力"/>
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/contentTextView"/>
-        <TextView
+            android:id="@+id/contentEditText"
+            android:hint="事案概要を入力"/>
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/refTextView"/>
+            android:id="@+id/refEditText"
+            android:hint="参照元を入力"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,8 +50,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="リストへ戻る"
-                android:id="@+id/backText"
+                android:text="詳細画面に戻る"
+                android:id="@+id/returnTextView"
                 android:textColor="#0000ff"
                 android:onClick="testToast"
                 android:paddingTop="10dp"
@@ -63,15 +66,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="修正する"
-                android:id="@+id/rewriteTextView"
+                android:text="修正"
+                android:id="@+id/okTextView"
                 android:textColor="#ff0000"
                 android:onClick="testToast"
                 android:paddingTop="10dp"
                 android:paddingRight="25dp"
                 android:clickable="true"/>
         </LinearLayout>
-
 
     </LinearLayout>
 
